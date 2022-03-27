@@ -1,4 +1,4 @@
-package com.java.meta.sys.lite.domain.model.po;
+package com.java.meta.sys.lite.domain.model.domain;
 
 import lombok.*;
 import org.hibernate.Hibernate;
@@ -10,12 +10,10 @@ import java.util.Objects;
  * @author HY
  */
 @Builder
-@Getter
-@Setter
-@ToString
+@Data
 @RequiredArgsConstructor
 @AllArgsConstructor
-public class SysUserDo {
+public class SysUser {
 
     private Long id;
 
@@ -49,8 +47,8 @@ public class SysUserDo {
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) {
             return false;
         }
-        SysUserDo sysUserDo = (SysUserDo) o;
-        return id != null && Objects.equals(id, sysUserDo.id);
+        SysUser sysUser = (SysUser) o;
+        return id != null && Objects.equals(id, sysUser.id);
     }
 
     @Override

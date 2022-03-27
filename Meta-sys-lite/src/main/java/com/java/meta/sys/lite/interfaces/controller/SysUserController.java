@@ -1,4 +1,4 @@
-package com.java.meta.sys.lite;
+package com.java.meta.sys.lite.interfaces.controller;
 
 import com.java.meta.sys.lite.common.utils.rest.SyncResult;
 import com.java.meta.sys.lite.domain.model.vo.SysUserPwVo;

@@ -5,7 +5,7 @@ import com.java.meta.sys.lite.common.exception.constant.ExceptionEnumConstant;
 import com.java.meta.sys.lite.common.exception.user.InvalidUserException;
 import com.java.meta.sys.lite.infrastructure.repository.db.dao.SysUserDao;
 import com.java.meta.sys.lite.domain.model.dto.SysUserDTO;
-import com.java.meta.sys.lite.domain.model.po.SysUserDo;
+import com.java.meta.sys.lite.infrastructure.repository.db.dataobject.SysUserPo;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -29,22 +29,22 @@ public class SysUserDTOManager {
     @Transactional(rollbackFor = Exception.class)
     public void createUser(SysUserDTO sysUserDTO) {
 
-        SysUserDo sysUserDo = sysUserDao.findSysUserPoByUserDtoAccount(sysUserDTO.getUserId());
+        SysUserPo sysUserPo = sysUserDao.findSysUserPoByUserDtoAccount(sysUserDTO.getUserId());
 
-        if (ObjectUtil.isNotNull(sysUserDo)) {
+        if (ObjectUtil.isNotNull(sysUserPo)) {
             throw new InvalidUserException(ExceptionEnumConstant.USER_DATA_ALREADY_EXISTS_EXCEPTION);
         }
 
-        SysUserDo sysUserDoEntity = SysUserDo.builder().build();
+        SysUserPo sysUserPoEntity = SysUserPo.builder().build();
 
-        BeanUtils.copyProperties(sysUserDTO, sysUserDoEntity);
+        BeanUtils.copyProperties(sysUserDTO, sysUserPoEntity);
 
-        sysUserDoEntity.setEmailStatus(0);
-        sysUserDoEntity.setAccountStatus(0);
-        sysUserDoEntity.setCreateBy("admin");
-        sysUserDoEntity.setCreateTime(Instant.now());
+        sysUserPoEntity.setEmailStatus(0);
+        sysUserPoEntity.setAccountStatus(0);
+        sysUserPoEntity.setCreateBy("admin");
+        sysUserPoEntity.setCreateTime(Instant.now());
 
-        sysUserDao.saveSysUserPo(sysUserDoEntity);
+        sysUserDao.saveSysUserPo(sysUserPoEntity);
     }
 
     @Transactional(rollbackFor = Exception.class)
@@ -53,24 +53,24 @@ public class SysUserDTOManager {
     }
 
     public SysUserDTO findSysUserByUserAccount(SysUserDTO sysUserDTO) {
-        SysUserDo sysUserDo = sysUserDao.findSysUserPoByUserDtoAccount(sysUserDTO.getUserId());
+        SysUserPo sysUserPo = sysUserDao.findSysUserPoByUserDtoAccount(sysUserDTO.getUserId());
 
-        if (ObjectUtil.isNull(sysUserDo)) {
+        if (ObjectUtil.isNull(sysUserPo)) {
             return SysUserDTO.builder().build();
         }
 
         SysUserDTO userDTO = SysUserDTO.builder().build();
-        BeanUtils.copyProperties(sysUserDo, userDTO);
+        BeanUtils.copyProperties(sysUserPo, userDTO);
         return userDTO;
     }
 
     @Transactional(rollbackFor = Exception.class)
     public void updateSysUser(SysUserDTO sysUserDTO) {
-        SysUserDo sysUserDo = SysUserDo.builder()
+        SysUserPo sysUserPo = SysUserPo.builder()
                 .updateBy("admin")
                 .updateTime(Instant.now())
                 .build();
-        BeanUtils.copyProperties(sysUserDTO, sysUserDo);
-        sysUserDao.updateSysUserPo(sysUserDo);
+        BeanUtils.copyProperties(sysUserDTO, sysUserPo);
+        sysUserDao.updateSysUserPo(sysUserPo);
     }
 }

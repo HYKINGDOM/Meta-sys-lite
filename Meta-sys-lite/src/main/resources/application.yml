@@ -16,7 +16,7 @@ spring:
 
 #mybatis:
 #  mapper-locations: classpath:mappers/*Mapper.xml
-#  typeAliasesPackage: com.java.meta.sys.lite.domain.model.po
+#  typeAliasesPackage: com.java.meta.sys.lite.infrastructure.repository.db.po
 #  configuration:
 #    map-underscore-to-camel-case: true
 #    cache-enabled: false

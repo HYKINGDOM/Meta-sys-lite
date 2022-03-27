@@ -3,11 +3,13 @@ package com.java.meta.sys.lite;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 /**
  * @author HY
  */
-@MapperScan("com.java.meta.sys.lite.dao")
+@EnableJpaAuditing
+@MapperScan("com.java.meta.sys.lite.infrastructure.repository.db.dao")
 @SpringBootApplication
 public class MetaSysLiteApplication {
 

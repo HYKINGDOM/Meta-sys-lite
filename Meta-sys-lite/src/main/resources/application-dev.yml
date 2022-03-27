@@ -12,6 +12,6 @@ spring:
 
 
 
-logging:
-  level:
-    com.baomidou.mybatisplus.samples.quickstart: debug
+#logging:
+#  level:
+#    com.baomidou.mybatisplus.samples.quickstart: error
