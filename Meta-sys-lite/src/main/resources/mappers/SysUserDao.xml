@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.java.meta.sys.lite.infrastructure.repository.db.dao.SysUserDao">
+
+    <resultMap id="SysUserResultMap" type="com.java.meta.sys.lite.domain.model.po.SysUserDo">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="user_id" property="userId" jdbcType="BIGINT"/>
+        <result column="user_account" property="userAccount" jdbcType="VARCHAR"/>
+        <result column="user_name" property="userName" jdbcType="VARCHAR"/>
+        <result column="user_email" property="userEmail" jdbcType="VARCHAR"/>
+        <result column="email_status" property="emailStatus" jdbcType="INTEGER"/>
+        <result column="account_status" property="accountStatus" jdbcType="INTEGER"/>
+        <result column="user_password" property="userPassword" jdbcType="VARCHAR"/>
+        <result column="create_by" property="createBy" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_by" property="updateBy" jdbcType="VARCHAR"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <select id="findSysUserPoByUserDtoAccount" resultMap="SysUserResultMap" parameterType="java.lang.Long">
+        select *
+        from sys_user as su
+        where su.user_id = #{userId}
+    </select>
+
+    <delete id="deleteSysUserPoByUserAccount" parameterType="java.lang.Long">
+        delete
+        from sys_user
+        where user_id = #{userId}
+    </delete>
+
+    <insert id="saveSysUserPo" parameterType="com.java.meta.sys.lite.domain.model.po.SysUserDo" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into meta_sys.sys_user
+                (user_id,
+                 user_account,
+                 user_name,
+                 user_email,
+                 email_status,
+                 account_status,
+                 user_password,
+                 create_by,
+                 create_time)
+        values (
+                #{userId},
+                #{userAccount},
+                #{userName},
+                #{userEmail},
+                #{emailStatus},
+                #{accountStatus},
+                #{userPassword},
+                #{createBy},
+                #{createTime});
+    </insert>
+
+    <update id="updateSysUserPo" parameterType="com.java.meta.sys.lite.domain.model.po.SysUserDo" keyProperty="id">
+        update
+        meta_sys.sys_user
+        <set>
+            <if test="userAccount != null">
+                user_account=#{userAccount},
+            </if>
+            <if test="userName != null">
+                user_name=#{userName},
+            </if>
+            <if test="userEmail != null">
+                user_email=#{userEmail},
+            </if>
+            <if test="emailStatus != null">
+                email_status=#{emailStatus},
+            </if>
+            <if test="accountStatus != null">
+                account_status=#{accountStatus},
+            </if>
+            <if test="userPassword != null">
+                user_password=#{userPassword},
+            </if>
+            <if test="updateBy != null">
+                update_by=#{updateBy},
+            </if>
+            <if test="updateTime != null">
+                update_time=#{updateTime},
+            </if>
+        </set>
+        <where>
+            <if test="userId != null">
+                user_id=#{userId}
+            </if>
+        </where>
+    </update>
+</mapper>

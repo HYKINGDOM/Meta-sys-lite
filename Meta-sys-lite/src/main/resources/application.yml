@@ -1,0 +1,25 @@
+server:
+  # 端口
+  port: 8080
+
+web:
+  rootDir: /log
+
+
+spring:
+  profiles:
+    active: dev
+#  security:
+#    user:
+#      name: admin
+#      password: 123456
+
+#mybatis:
+#  mapper-locations: classpath:mappers/*Mapper.xml
+#  typeAliasesPackage: com.java.meta.sys.lite.domain.model.po
+#  configuration:
+#    map-underscore-to-camel-case: true
+#    cache-enabled: false
+#    call-setters-on-nulls: true
+
+
