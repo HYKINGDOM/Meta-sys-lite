@@ -1,24 +1,22 @@
 package com.java.meta.sys.lite.common.utils.rest;
 
 import cn.hutool.core.util.ObjectUtil;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.Optional;
 
 /**
  * 构建返回消息
  *
  * @author HY
  */
+@NoArgsConstructor
 public class SyncResult extends RestResultEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    public SyncResult() {
-    }
 
     /**
      * 初始化SyncResult
@@ -29,7 +27,6 @@ public class SyncResult extends RestResultEntity implements Serializable {
     public SyncResult(ReturnType returnType, String msg) {
         this.setCode(returnType.getCode());
         this.setMsg(msg);
-        this.setTimestamp(Instant.now().toString());
     }
 
     /**
@@ -42,10 +39,7 @@ public class SyncResult extends RestResultEntity implements Serializable {
     public SyncResult(ReturnType returnType, String msg, Object data) {
         this.setCode(returnType.getCode());
         this.setMsg(msg);
-        this.setTimestamp(Instant.now().toString());
-        if (ObjectUtil.isNotNull(data)) {
-            this.setData(data);
-        }
+        this.setData(Optional.ofNullable(data).orElse(null));
     }
 
     /**
@@ -58,10 +52,7 @@ public class SyncResult extends RestResultEntity implements Serializable {
     public SyncResult(String code, String msg, Object data) {
         this.setCode(code);
         this.setMsg(msg);
-        this.setTimestamp(Instant.now().toString());
-        if (ObjectUtil.isNotNull(data)) {
-            this.setData(data);
-        }
+        this.setData(Optional.ofNullable(data).orElse(null));
     }
 
     /**

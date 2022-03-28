@@ -9,6 +9,8 @@ web:
 spring:
   profiles:
     active: dev
+  application:
+    name: meta-sys-lite
 #  security:
 #    user:
 #      name: admin

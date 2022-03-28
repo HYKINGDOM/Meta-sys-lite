@@ -24,7 +24,7 @@ public class SysRoleRepositoryImpl extends ServiceImpl<SysRoleDao, SysRolePo> im
     private final SysRoleMapper sysRoleMapper;
 
     @Override
-    public SysRole saveSysRole(SysRole sysRole) {
+    public SysRole saveOrUpdateSysRole(SysRole sysRole) {
         SysRolePo sysRolePo = sysRoleMapper.toSysRolePo(sysRole);
         QueryWrapper<SysRolePo> queryWrapper = new QueryWrapper<>();
         queryWrapper.lambda().eq(SysRolePo::getRoleId, sysRolePo.getRoleId());

@@ -22,7 +22,7 @@ public class SysRoleServiceImpl implements SysRoleService {
 
     @Override
     public SysRole saveSysRole(SysRole sysRole) {
-        return sysRoleRepository.saveSysRole(sysRole);
+        return sysRoleRepository.saveOrUpdateSysRole(sysRole);
     }
 
     @Override

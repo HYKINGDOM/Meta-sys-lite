@@ -6,5 +6,5 @@ import com.java.meta.sys.lite.infrastructure.repository.db.dataobject.SysRolePo;
 
 public interface SysRoleRepository extends IService<SysRolePo> {
 
-    SysRole saveSysRole(SysRole sysRole);
+    SysRole saveOrUpdateSysRole(SysRole sysRole);
 }
