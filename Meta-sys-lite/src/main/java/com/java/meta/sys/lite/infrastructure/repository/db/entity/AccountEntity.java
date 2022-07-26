@@ -1,4 +1,4 @@
-package com.java.meta.sys.lite.infrastructure.repository.db.dataobject;
+package com.java.meta.sys.lite.infrastructure.repository.db.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.*;
@@ -10,26 +10,23 @@ import java.time.Instant;
  */
 @Builder
 @Data
-@RequiredArgsConstructor
 @AllArgsConstructor
-@TableName("sys_user")
-public class SysUserPo {
+@TableName("sys_account")
+public class AccountEntity {
 
     private Long id;
 
-    private Long userId;
+    private Long accountId;
 
-    private String userAccount;
+    private String accountNumber;
 
-    private String userName;
-
-    private String userEmail;
+    private String accountEmail;
 
     private Integer emailStatus;
 
     private Integer accountStatus;
 
-    private String userPassword;
+    private String password;
 
     private String createBy;
 

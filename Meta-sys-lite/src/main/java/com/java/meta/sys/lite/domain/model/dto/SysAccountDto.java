@@ -8,7 +8,7 @@ import lombok.Data;
  */
 @Builder
 @Data
-public class SysUserDTO {
+public class SysAccountDto {
 
     private Long userId;
 

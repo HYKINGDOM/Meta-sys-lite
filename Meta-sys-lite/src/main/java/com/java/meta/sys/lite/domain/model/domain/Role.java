@@ -2,17 +2,19 @@ package com.java.meta.sys.lite.domain.model.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 /**
  * @author HY
  */
 @Builder
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class SysRole {
+public class Role {
 
     private Integer roleId;
 

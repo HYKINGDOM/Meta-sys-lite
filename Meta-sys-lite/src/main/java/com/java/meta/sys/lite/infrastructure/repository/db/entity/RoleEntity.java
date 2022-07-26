@@ -1,4 +1,4 @@
-package com.java.meta.sys.lite.infrastructure.repository.db.dataobject;
+package com.java.meta.sys.lite.infrastructure.repository.db.entity;
 
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.IdType;
@@ -19,7 +19,7 @@ import java.time.Instant;
 @AllArgsConstructor
 @NoArgsConstructor
 @TableName("sys_role")
-public class SysRolePo {
+public class RoleEntity {
 
     @TableId(type = IdType.AUTO)
     private Integer id;

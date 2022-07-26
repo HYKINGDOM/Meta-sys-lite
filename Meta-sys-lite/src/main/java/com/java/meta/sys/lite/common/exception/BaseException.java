@@ -12,22 +12,22 @@ public class BaseException extends RuntimeException {
     /**
      * module
      */
-    private String module;
+    private final String module;
 
     /**
      * error code
      */
-    private String code;
+    private final String code;
 
     /**
      * parameters
      */
-    private Object[] args;
+    private final Object[] args;
 
     /**
      * error message
      */
-    private String message;
+    private final String message;
 
     public BaseException(String module, String code, Object[] args, String message) {
         this.module = module;

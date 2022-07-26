@@ -1,7 +1,7 @@
 package com.java.meta.sys.lite.application.rules;
 
-import com.java.meta.sys.lite.domain.model.vo.SysUserPwVo;
-import com.java.meta.sys.lite.domain.model.vo.SysUserVo;
+import com.java.meta.sys.lite.interfaces.controller.request.SysUserPwVo;
+import com.java.meta.sys.lite.interfaces.controller.request.SysUserVo;
 import com.java.meta.sys.lite.application.rules.user.SysUserAccountValid;
 import com.java.meta.sys.lite.application.rules.user.SysUserEmailValid;
 import com.java.meta.sys.lite.application.rules.user.SysUserNameValid;

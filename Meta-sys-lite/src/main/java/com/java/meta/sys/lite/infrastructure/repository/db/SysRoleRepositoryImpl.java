@@ -4,11 +4,11 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.java.meta.sys.lite.domain.model.domain.SysRole;
-import com.java.meta.sys.lite.domain.repository.SysRoleRepository;
-import com.java.meta.sys.lite.infrastructure.repository.db.convertor.SysRoleMapper;
+import com.java.meta.sys.lite.domain.model.domain.Role;
+import com.java.meta.sys.lite.infrastructure.repository.db.entity.RoleEntity;
+import com.java.meta.sys.lite.service.port.SysRoleRepository;
+import com.java.meta.sys.lite.infrastructure.repository.db.mapper.RoleEntityMapper;
 import com.java.meta.sys.lite.infrastructure.repository.db.dao.SysRoleDao;
-import com.java.meta.sys.lite.infrastructure.repository.db.dataobject.SysRolePo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -17,31 +17,31 @@ import org.springframework.stereotype.Component;
  */
 @RequiredArgsConstructor
 @Component
-public class SysRoleRepositoryImpl extends ServiceImpl<SysRoleDao, SysRolePo> implements SysRoleRepository {
+public class SysRoleRepositoryImpl extends ServiceImpl<SysRoleDao, RoleEntity> implements SysRoleRepository {
 
     private final SysRoleDao sysRoleDao;
 
-    private final SysRoleMapper sysRoleMapper;
+    private final RoleEntityMapper roleEntityMapper;
 
     @Override
-    public SysRole saveOrUpdateSysRole(SysRole sysRole) {
-        SysRolePo sysRolePo = sysRoleMapper.toSysRolePo(sysRole);
-        QueryWrapper<SysRolePo> queryWrapper = new QueryWrapper<>();
-        queryWrapper.lambda().eq(SysRolePo::getRoleId, sysRolePo.getRoleId());
-        SysRolePo selectOne = sysRoleDao.selectOne(queryWrapper);
+    public Role saveOrUpdateSysRole(Role role) {
+        RoleEntity roleEntity = roleEntityMapper.toRoleEntity(role);
+        QueryWrapper<RoleEntity> queryWrapper = new QueryWrapper<>();
+        queryWrapper.lambda().eq(RoleEntity::getRoleId, roleEntity.getRoleId());
+        RoleEntity selectOne = sysRoleDao.selectOne(queryWrapper);
         if (selectOne == null) {
-            sysRoleDao.insert(sysRolePo);
+            sysRoleDao.insert(roleEntity);
         } else {
-            UpdateWrapper<SysRolePo> updateWrapper = new UpdateWrapper<>();
-            LambdaUpdateWrapper<SysRolePo> sysRolePoLambdaUpdateWrapper = updateWrapper.lambda()
-                    .eq(SysRolePo::getRoleId, selectOne.getRoleId())
-                    .eq(SysRolePo::getId, selectOne.getId())
-                    .eq(SysRolePo::getVersion, selectOne.getVersion())
-                    .set(SysRolePo::getRoleName, sysRolePo.getRoleName())
-                    .set(SysRolePo::getParentRoleId, sysRolePo.getParentRoleId())
-                    .set(SysRolePo::getRoleStatus, sysRolePo.getRoleStatus());
+            UpdateWrapper<RoleEntity> updateWrapper = new UpdateWrapper<>();
+            LambdaUpdateWrapper<RoleEntity> sysRolePoLambdaUpdateWrapper = updateWrapper.lambda()
+                    .eq(RoleEntity::getRoleId, selectOne.getRoleId())
+                    .eq(RoleEntity::getId, selectOne.getId())
+                    .eq(RoleEntity::getVersion, selectOne.getVersion())
+                    .set(RoleEntity::getRoleName, roleEntity.getRoleName())
+                    .set(RoleEntity::getParentRoleId, roleEntity.getParentRoleId())
+                    .set(RoleEntity::getRoleStatus, roleEntity.getRoleStatus());
             sysRoleDao.update(selectOne, sysRolePoLambdaUpdateWrapper);
         }
-        return sysRole;
+        return role;
     }
 }

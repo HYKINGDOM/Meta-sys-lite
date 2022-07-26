@@ -1,8 +1,8 @@
-package com.java.meta.sys.lite.service;
+package com.java.meta.sys.lite.service.impl;
 
+import com.java.meta.sys.lite.service.AccountService;
 import org.springframework.stereotype.Service;
 
-import java.util.concurrent.ThreadLocalRandom;
 
 @Service
 public class EmployeeAccountServiceImpl implements AccountService {

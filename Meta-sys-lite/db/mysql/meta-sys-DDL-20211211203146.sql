@@ -1,13 +1,12 @@
-DROP TABLE IF EXISTS sys_user;
-CREATE TABLE sys_user(
+DROP TABLE IF EXISTS sys_account;
+CREATE TABLE sys_account(
     id INT(32) NOT NULL AUTO_INCREMENT  COMMENT 'id' ,
-    user_id INT(32)    COMMENT '用户id' ,
-    user_acount VARCHAR(32)    COMMENT '账户' ,
-    user_name VARCHAR(32)    COMMENT '用户名' ,
-    user_email VARCHAR(32)    COMMENT '邮箱' ,
+    account_id INT(32)    COMMENT '用户id' ,
+    account_number VARCHAR(32)    COMMENT '账户' ,
+    password VARCHAR(255)    COMMENT '用户密码' ,
+    account_email VARCHAR(32)    COMMENT '邮箱' ,
     email_status int(1)    COMMENT '邮箱状态' ,
     account_status int(1)    COMMENT '用户状态' ,
-    user_password VARCHAR(255)    COMMENT '用户密码' ,
     create_by VARCHAR(32)    COMMENT '创建人' ,
     create_time DATETIME    COMMENT '创建时间' ,
     update_by VARCHAR(32)    COMMENT '更新人' ,
@@ -15,20 +14,21 @@ CREATE TABLE sys_user(
     PRIMARY KEY (id)
 )  COMMENT = '';
 
-DROP TABLE IF EXISTS sys_user_info;
-CREATE TABLE sys_user_info(
+DROP TABLE IF EXISTS sys_account_info;
+CREATE TABLE sys_account_info(
     id INT(32) NOT NULL AUTO_INCREMENT  COMMENT 'id' ,
-    user_id INT(32) NOT NULL   COMMENT '用户id' ,
-    user_icon VARCHAR(255)    COMMENT '用户头像' ,
-    user_address VARCHAR(255)    COMMENT '用户地址' ,
+    account_id INT(32) NOT NULL   COMMENT '用户id' ,
+    account_name VARCHAR(32)    COMMENT '用户名' ,
+    account_icon VARCHAR(255)    COMMENT '用户头像' ,
+    account_address VARCHAR(255)    COMMENT '用户地址' ,
     online_sum_time VARCHAR(255)    COMMENT '用户在线总时间' ,
     register_time DATETIME    COMMENT '注册时间' ,
     register_ip VARCHAR(64)    COMMENT '注册IP地址' ,
     last_login_time DATETIME    COMMENT '最后一次登陆时间' ,
     last_login_ip VARCHAR(64)    COMMENT '最后一次登录ip' ,
-    localtion_time_zone VARCHAR(32)    COMMENT '用户时区' ,
-    user_phone VARCHAR(32)    COMMENT '用户手机号' ,
-    user_phone_status INT(1)    COMMENT '手机号状态' ,
+    location_time_zone VARCHAR(32)    COMMENT '用户时区' ,
+    mobile_phone VARCHAR(32)    COMMENT '用户手机号' ,
+    mobile_phone_status INT(1)    COMMENT '手机号状态' ,
     personal_signature VARCHAR(900)    COMMENT '用户签名' ,
     PRIMARY KEY (id)
 )  COMMENT = '';
@@ -91,10 +91,10 @@ CREATE TABLE sys_auth(
     PRIMARY KEY (id)
 )  COMMENT = '';
 
-DROP TABLE IF EXISTS user_org_relation;
-CREATE TABLE user_org_relation(
+DROP TABLE IF EXISTS account_org_relation;
+CREATE TABLE account_org_relation(
     id INT(32) NOT NULL AUTO_INCREMENT  COMMENT 'id' ,
-    user_id INT(32)    COMMENT '用户id' ,
+    account_id INT(32)    COMMENT '用户id' ,
     org_id INT(32)    COMMENT '组织id' ,
     create_by VARCHAR(32)    COMMENT '创建人' ,
     create_time DATETIME    COMMENT '创建时间' ,
@@ -103,10 +103,10 @@ CREATE TABLE user_org_relation(
     PRIMARY KEY (id)
 )  COMMENT = '';
 
-DROP TABLE IF EXISTS user_role_relation;
-CREATE TABLE user_role_relation(
+DROP TABLE IF EXISTS account_role_relation;
+CREATE TABLE account_role_relation(
     id INT(32) NOT NULL AUTO_INCREMENT  COMMENT 'id' ,
-    user_id INT(32)    COMMENT '用户id' ,
+    account_id INT(32)    COMMENT '用户id' ,
     role_id INT(32)    COMMENT '角色id' ,
     create_by VARCHAR(32)    COMMENT '创建人' ,
     create_time DATETIME    COMMENT '创建时间' ,

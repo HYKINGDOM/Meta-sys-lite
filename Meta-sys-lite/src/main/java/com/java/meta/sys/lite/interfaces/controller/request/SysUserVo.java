@@ -1,6 +1,7 @@
-package com.java.meta.sys.lite.domain.model.vo;
+package com.java.meta.sys.lite.interfaces.controller.request;
 
 
+import lombok.Builder;
 import lombok.Data;
 import lombok.experimental.SuperBuilder;
 
@@ -19,7 +20,7 @@ import static com.java.meta.sys.lite.common.exception.constant.UserExceptionCons
 /**
  * @author HY
  */
-@SuperBuilder
+@Builder
 @Data
 public class SysUserVo {
 
