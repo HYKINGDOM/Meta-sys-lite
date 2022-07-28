@@ -150,4 +150,26 @@ public class SyncResult extends RestResultEntity implements Serializable {
     }
 
 
+    /**
+     * 参数验证失败返回结果
+     * @param message 提示信息
+     */
+    public static SyncResult validateFailed(String message) {
+        return new SyncResult(ResultCode.VALIDATE_FAILED.getCode(), message, null);
+    }
+
+    /**
+     * 未登录返回结果
+     */
+    public static SyncResult unauthorized(Object data) {
+        return new SyncResult(ResultCode.UNAUTHORIZED.getCode(), ResultCode.UNAUTHORIZED.getMessage(), data);
+    }
+
+    /**
+     * 未授权返回结果
+     */
+    public static SyncResult forbidden(Object data) {
+        return new SyncResult(ResultCode.FORBIDDEN.getCode(), ResultCode.FORBIDDEN.getMessage(), data);
+    }
+
 }

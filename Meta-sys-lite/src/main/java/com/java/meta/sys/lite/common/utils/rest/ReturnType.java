@@ -8,12 +8,12 @@ public enum ReturnType {
     /**
      * 成功
      */
-    SUCCESS("200", "操作成功!"),
+    SUCCESS("200", "Success"),
 
     /**
      * 警告
      */
-    WARN("301", "Warning"),
+    WARN("300", "Warning"),
 
     /**
      * 错误
