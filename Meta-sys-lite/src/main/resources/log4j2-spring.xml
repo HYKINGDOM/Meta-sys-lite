@@ -158,31 +158,35 @@
         </RollingFile>
     </appenders>
 
+
+    <!--异步打印日志-->
+    <appender name="ASYNC" class="ch.qos.logback.classic.AsyncAppender">
+        <!-- 不丢失日志.默认的,如果队列的80%已满,则会丢弃TRACT、DEBUG、INFO级别的日志 -->
+        <discardingThreshold>0</discardingThreshold>
+        <!-- 更改默认的队列的深度,该值会影响性能.默认值为256 -->
+        <queueSize>512</queueSize>
+        <!-- 添加附加的appender,最多只能添加一个 -->
+        <appender-ref ref="INFO_FILE"/>
+    </appender>
+
     <!--定义logger,只有定义了logger并引入的appender,appender才会生效-->
     <loggers>
         <!-- 设置打印sql语句配置开始,以下两者配合使用,可以优化日志的输出信息,减少一些不必要信息的输出 -->
         <!-- 设置java.sql包下的日志只打印DEBUG及以上级别的日志,此设置可以支持sql语句的日志打印 -->
         <logger name="java.sql" level="DEBUG" additivity="false">
             <appender-ref ref="InfoFile"/>
+            <appender-ref ref="ASYNC"/>
         </logger>
         <!-- 设置org.mybatis.spring包下的日志只打印WARN及以上级别的日志 -->
         <logger name="org.mybatis.spring" level="ERROR" additivity="false">
             <appender-ref ref="ErrorFile"/>
+            <appender-ref ref="ASYNC"/>
         </logger>
         <!-- 设置org.mybatis.spring包下的日志只打印WARN及以上级别的日志 -->
         <logger name="org.springframework" level="ERROR" additivity="false">
             <appender-ref ref="ErrorFile"/>
+            <appender-ref ref="ASYNC"/>
         </logger>
-
-<!--        <logger name="com.alibaba.cloud.dubbo.metadata" level="ERROR" additivity="false">-->
-<!--            <appender-ref ref="ErrorFile"/>-->
-<!--        </logger>-->
-<!--        <logger name="com.alibaba.nacos.client" level="WARN" additivity="false">-->
-<!--            <appender-ref ref="ErrorFile"/>-->
-<!--        </logger>-->
-<!--        <logger name="com.netflix" level="ERROR" additivity="false">-->
-<!--            <appender-ref ref="ErrorFile"/>-->
-<!--        </logger>-->
 
         <!-- 设置打印sql语句配置结束 -->
 
